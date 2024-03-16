@@ -28,13 +28,28 @@ enum layer_number {
 enum custom_keycodes {
     CUSTOM_0 = SAFE_RANGE,
     CUSTOM_1,
+    CUSTOM_2,
+    CUSTOM_3,
+    CUSTOM_4,
+    CUSTOM_5,
+    CUSTOM_6,
+    CUSTOM_7,
+    CUSTOM_8,
+    CUSTOM_9,
+    CUSTOM_10,
 };
 
-// macro for the macro keys
+// macros for the macro keys
 #define SHIFT_KEY(key) do { \
     register_code(KC_RSFT); \
     tap_code(key); \
     unregister_code(KC_RSFT); \
+} while(0)
+
+#define ALTGR_KEY(key) do { \
+    register_code(KC_RALT); \
+    tap_code(key); \
+    unregister_code(KC_RALT); \
 } while(0)
 
 #define MACRO_SHIFT(key1, key2) if (record->event.pressed) { \
@@ -48,23 +63,164 @@ enum custom_keycodes {
 bool process_record_user(uint16_t keycode, keyrecord_t *record)
 {
     switch (keycode) {
-    case CUSTOM_0:
+    case CUSTOM_1:
         if (record->event.pressed)
         {
             if (keyboard_report->mods & MOD_BIT(KC_LSFT))
             {
-                SHIFT_KEY(KC_1);
+                // disable the left shift key
+                unregister_code(KC_LSFT);
+                tap_code(KC_GRAVE); // |
+                // reenable the left shift key
+                register_code(KC_LSFT);
             }
             else
             {
-                SHIFT_KEY(KC_2);
+                SHIFT_KEY(KC_1); // !
             }
         }
         else {}
         break;
-    case CUSTOM_1:
-        MACRO_SHIFT(KC_3, KC_4);
+    case CUSTOM_2:
+        if (record->event.pressed)
+        {
+            if (keyboard_report->mods & MOD_BIT(KC_LSFT))
+            {
+                // empty
+            }
+            else
+            {
+                SHIFT_KEY(KC_2); // "
+            }
+        }
+        else {}
         break;
+    case CUSTOM_3:
+        if (record->event.pressed)
+        {
+            if (keyboard_report->mods & MOD_BIT(KC_LSFT))
+            {
+                SHIFT_KEY(KC_3); // #
+            }
+            else
+            {
+                SHIFT_KEY(KC_0); // =
+            }
+        }
+        else {}
+        break;
+    case CUSTOM_4:
+        if (record->event.pressed)
+        {
+            if (keyboard_report->mods & MOD_BIT(KC_LSFT))
+            {
+                // disable the left shift key
+                unregister_code(KC_LSFT);
+                ALTGR_KEY(KC_4); // ~
+                // reenable the left shift key
+                register_code(KC_LSFT);
+            }
+            else
+            {
+                SHIFT_KEY(KC_4); // $
+            }
+        }
+        else {}
+        break;
+    case CUSTOM_5:
+        if (record->event.pressed)
+        {
+            if (keyboard_report->mods & MOD_BIT(KC_LSFT))
+            {
+                SHIFT_KEY(KC_5); // %
+            }
+            else
+            {
+                SHIFT_KEY(KC_6); // &
+            }
+        }
+        else {}
+        break;
+    case CUSTOM_6:
+        if (record->event.pressed)
+        {
+            if (keyboard_report->mods & MOD_BIT(KC_LSFT))
+            {
+                // disable the left shift key
+                unregister_code(KC_LSFT);
+                ALTGR_KEY(KC_MINS); // \ (backslash)
+                // reenable the left shift key
+                register_code(KC_LSFT);
+            }
+            else
+            {
+                SHIFT_KEY(KC_7); // /
+            }
+        }
+        else {}
+        break;
+    case CUSTOM_7:
+        if (record->event.pressed)
+        {
+            if (keyboard_report->mods & MOD_BIT(KC_LSFT))
+            {
+                SHIFT_KEY(KC_QUOTE); // [
+            }
+            else
+            {
+                SHIFT_KEY(KC_8); // (
+            }
+        }
+        else {}
+        break;
+    case CUSTOM_8:
+        if (record->event.pressed)
+        {
+            if (keyboard_report->mods & MOD_BIT(KC_LSFT))
+            {
+                SHIFT_KEY(KC_BSLS); // ]
+            }
+            else
+            {
+                SHIFT_KEY(KC_9); // )
+            }
+        }
+        else {}
+        break;
+    case CUSTOM_9:
+        if (record->event.pressed)
+        {
+            if (keyboard_report->mods & MOD_BIT(KC_LSFT))
+            {
+                // disable the left shift key
+                unregister_code(KC_LSFT);
+                tap_code(KC_NUBS); // <
+                // reenable the left shift key
+                register_code(KC_LSFT);
+            }
+            else
+            {
+                tap_code(KC_QUOTE); // {
+            }
+        }
+        else {}
+        break;
+    case CUSTOM_10:
+        if (record->event.pressed)
+        {
+            if (keyboard_report->mods & MOD_BIT(KC_LSFT))
+            {
+                SHIFT_KEY(KC_NUBS); // >
+            }
+            else
+            {
+                tap_code(KC_BSLS); // }
+            }
+        }
+        else {}
+        break;
+    // ! " = $ &  / ( ) { }
+    // |   # ~ %  \ [ ] < >
     }
 
     return true;
@@ -90,7 +246,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_DVO] = LAYOUT(
 //*/------------------------------------------------------------------------------------------/--/                             /--/--------------------------------------------------------------------------------------------
-/**/      CUSTOM_0,      CUSTOM_1,      XXXXXXX,       XXXXXXX,       XXXXXXX,       XXXXXXX, /**/                             /**/       XXXXXXX,       XXXXXXX,       XXXXXXX,       XXXXXXX,       XXXXXXX,       XXXXXXX,
+/**/       XXXXXXX,      CUSTOM_1,     CUSTOM_2,      CUSTOM_3,      CUSTOM_4,      CUSTOM_5, /**/                             /**/      CUSTOM_6,      CUSTOM_7,      CUSTOM_8,      CUSTOM_9,     CUSTOM_10,       XXXXXXX,
 //*/------------------------------------------------------------------------------------------/**/                             /**/--------------------------------------------------------------------------------------------
 /**/        KC_TAB,          KC_Q,         KC_W,          KC_B,          KC_P,          KC_K, /**/                             /**/          KC_X,          KC_L,          KC_C,          KC_H,          KC_F,        KC_ESC,
 //*/------------------------------------------------------------------------------------------/**/                             /**/--------------------------------------------------------------------------------------------
