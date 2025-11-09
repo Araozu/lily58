@@ -1,4 +1,5 @@
 #include QMK_KEYBOARD_H
+#include "leader.c"
 
 enum layer_number {
   _DVO = 0,
@@ -232,8 +233,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
     return true;
 }
 
-// ho
-
 
 /* LEFT  - 01
  *
@@ -246,7 +245,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
  *     |-------+-------+-------+-------+-------+-------|  - _  |
  *     |       |       |   Y   |   B   |   I   |  . :  |-------|
  *     `-----------------------------------------------/       /
- *                       | C+Tab |!Leader| TAB   |   / Space  /
+ *                       | C+Tab | TAB   |!Leader|   / Space  /
  *                       |       |       | raise |  /        /
  *                       '--------------------------------'
  */
