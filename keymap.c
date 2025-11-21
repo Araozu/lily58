@@ -143,11 +143,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
         {
             if (keyboard_report->mods & MOD_BIT(KC_LSFT))
             {
-                SHIFT_KEY(KC_5); // %
+                SHIFT_KEY(KC_6); // &
             }
             else
             {
-                SHIFT_KEY(KC_6); // &
+                SHIFT_KEY(KC_5); // %
             }
         }
         else {}
@@ -241,15 +241,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 /* LEFT  - 01
  *
  *     ╭───────┬───────┬───────┬───────┬───────┬───────╮
- *     │       │  ! |  │  " @  │  = #  │  $ ~  │  & %  │
+ *     │       │  ! |  │  " @  │  = #  │  $ ~  │  % &  │
  *     ├───────┼───────┼───────┼───────┼───────┼───────┤
- *     │       │   Q   │   W   │   U   │   P   │   X   │
+ *     │       │   Q   │   W   │   I   │   P   │   X   │
  *     ├───────┼───────┼───────┼───────┼───────┼───────┤
  *     │   Ñ   │   :   │   O   │   A   │   E   │   G   ├───────╮
  *     ├───────┼───────┼───────┼───────┼───────┼───────┤  - _  │
- *     │       │       │   Y   │   B   │   I   │  . :  ├───────┤
+ *     │       │       │   Y   │   B   │   U   │  . :  ├───────┤
  *     ╰───────┴───────┴─┬─────┴─┬─────┴─┬─────┴─┬─────╯       ╱
- *                       │ C+Tab │ TAB   │!Leader│   ╱ Space  ╱
+ *                       │ C+Tab │ Leader│ TAB   │   ╱ Space  ╱
  *                       │       │       │ raise │  ╱        ╱
  *                       ╰───────┴───────┴───────┴───────────
  */
